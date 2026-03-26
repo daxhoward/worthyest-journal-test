@@ -4,18 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>The Worthyest Daily Journal</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'DM Sans',sans-serif;background:#FFFCF8;color:#1A1A1A;-webkit-font-smoothing:antialiased}
-textarea,input{font-family:'DM Sans',sans-serif;outline:none}
-textarea:focus,input:focus{outline:none}
-button{cursor:pointer}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-</style>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'DM Sans',sans-serif;background:#FFFCF8;-webkit-font-smoothing:antialiased}textarea,input{font-family:'DM Sans',sans-serif;outline:none}button{cursor:pointer}@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}</style>
 </head>
 <body>
 <div id="root"></div>
@@ -23,9 +14,7 @@ button{cursor:pointer}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.9/babel.min.js"></script>
 <script type="text/babel">
-const {useState}=React;
-const e=React.createElement;
-
+const{useState}=React;
 const C=[
 {n:"Health & Wellness",d:7,i:"🌿",h:"linear-gradient(160deg,#F5C4A0,#E8945A 40%,#D47A40)",a:"#C47030",b:"#F0D4B8",w:"#FFF4EC",g:"linear-gradient(135deg,#FFF8F0,#FDE8D4)",t:"#4A2E1A",q:"Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment.",au:"Buddha",pl:"How does your relationship with food feel right now?",tk:"Sometimes the most productive thing you can do is stop measuring.",gr:"You're almost halfway there. Twelve days of showing up."},
 {n:"Personal Growth",d:14,i:"✨",h:"linear-gradient(160deg,#F0B8A0,#D88868 40%,#C46E50)",a:"#B05A3A",b:"#ECCABA",w:"#FFF0E8",g:"linear-gradient(135deg,#FFF5EE,#FAE0D0)",t:"#4A2820",q:"Fall seven times, stand up eight.",au:"Japanese Proverb",pl:"Notice the ritual around your first meal. Are you rushing, or present?",tk:"Resilience isn't about not falling. It's about what you learn on the way back up.",gr:"Two weeks. You've built something real."},
@@ -34,8 +23,8 @@ const C=[
 {n:"Relationships",d:5,i:"💛",h:"linear-gradient(160deg,#F4BAA4,#E08060 40%,#CC6848)",a:"#BE5838",b:"#F0C4B0",w:"#FFF2EC",g:"linear-gradient(135deg,#FFF6F0,#FCE0D0)",t:"#4A2418",q:"If you want to go fast, go alone. If you want to go far, go together.",au:"African Proverb",pl:"Share a meal with someone today. Notice the conversation.",tk:"The best gift you can give someone is your full attention.",gr:"Day five. You're showing up — that ripples outward."},
 {n:"Technology",d:6,i:"⚡",h:"linear-gradient(160deg,#E0C4A0,#C4986A 40%,#AE8454)",a:"#9A7040",b:"#E4CCB0",w:"#FBF4EA",g:"linear-gradient(135deg,#FEF8F0,#F4E4CE)",t:"#44321E",q:"Technology is a useful servant but a dangerous master.",au:"Christian Lous Lange",pl:"Before you eat, pause. Three breaths. Then begin.",tk:"Tools should extend your life, not replace it.",gr:"Day six. Learning to be intentional. That's rare."}
 ];
-const Mo=[{icon:"◇",label:"Sluggish",color:"#A89B91"},{icon:"◈",label:"Restless",color:"#B8863A"},{icon:"○",label:"Steady",color:"#5A8A7A"},{icon:"◉",label:"Clear",color:"#6A7A8A"},{icon:"✦",label:"Radiant",color:"#C49030"}];
-const Ri=[["🧘‍♀️","Stretching / Yoga"],["🫁","Breathwork"],["🏋️‍♀️","Workout"],["🚶‍♀️","Walk"],["🧘","Meditation"],["🥋","Tai Chi"],["📖","Reading"],["🙏","Prayer / Spiritual"]];
+const Mo=[{icon:"◇",label:"Sluggish",color:"#A89B91"},{icon:"◈",label:"Restless",color:"#B8863A"},{icon:"○",label:"Steady",color:"#5A8A7A"},{icon:"◉",label:"Sharp & Clear",color:"#6A7A8A"},{icon:"✦",label:"Radiant",color:"#C49030"}];
+const Ri=[["🧘‍♀️","Stretching / Yoga"],["🫁","Breathwork"],["🏋️‍♀️","Workout"],["🚶‍♀️","Walk"],["🧘","Meditation"],["🥋","Tai Chi"],["📖","Reading"],["🧩","Brain Training"],["🙏","Prayer / Spiritual"]];
 const HL=["Moved my body intentionally","Ate one fully mindful meal","Got sunlight within an hour of waking"];
 
 function App(){
@@ -47,239 +36,82 @@ const[hab,setHab]=useState([false,false,false]);
 const[so,setSo]=useState(false);
 const[ot,setOt]=useState("");
 const c=C[ci];
-
 const reset=()=>{setMood(null);setMm(null);setRit([]);setHab([false,false,false]);setSo(false);setOt("");};
 
-const s=(x,v)=>Object.assign({},x,v);
+const SB=({s})=><div style={{display:"flex",gap:6}}>{[1,2,3].map(x=><div key={x} style={{width:36,height:8,borderRadius:4,background:x<=s?"#fff":"rgba(255,255,255,0.3)"}}/>)}</div>;
+
+const Sec=({s,e,l,sub})=>(
+<div style={{padding:"24px 22px 20px",margin:"32px 0 18px",background:c.h,borderRadius:18,position:"relative",overflow:"hidden",boxShadow:"0 4px 20px rgba(0,0,0,0.1)"}}>
+<div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 90% 50%,rgba(255,255,255,0.12),transparent 50%)"}}/>
+<div style={{display:"flex",justifyContent:"space-between",alignItems:"center",position:"relative"}}>
+<div style={{display:"flex",alignItems:"center",gap:14}}>
+<span style={{fontSize:34}}>{e}</span>
+<div><p style={{fontSize:22,letterSpacing:5,fontWeight:800,color:"#fff"}}>{l}</p><p style={{fontSize:15,color:"rgba(255,255,255,0.95)",fontWeight:600,marginTop:3}}>{sub}</p></div>
+</div>
+<SB s={s}/>
+</div>
+</div>);
+
+const MR=({v,set})=><div style={{display:"flex",gap:6}}>{Mo.map((m,i)=><div key={i} onClick={()=>set(i)} style={{flex:1,textAlign:"center",padding:"10px 4px 8px",borderRadius:12,cursor:"pointer",background:v===i?m.color+"15":"#FAFAFA",border:v===i?"2px solid "+m.color:"1.5px solid "+c.b,transition:"all 0.2s"}}><span style={{fontSize:22,color:v===i?m.color:m.color+"70"}}>{m.icon}</span><p style={{fontSize:11,fontWeight:v===i?700:500,color:v===i?m.color:"#6B6660",marginTop:3}}>{m.label}</p></div>)}</div>;
 
 return(
 <div style={{background:"#FFFCF8",minHeight:"100vh",paddingBottom:60}}>
 
-{/* Category switcher - for testing */}
 <div style={{background:"#FAF5EE",padding:"10px 12px",borderBottom:"1px solid #F0D4B8",position:"sticky",top:0,zIndex:100}}>
 <p style={{textAlign:"center",fontSize:9,letterSpacing:2,color:"#8A7A68",fontWeight:600,marginBottom:6}}>TAP TO PREVIEW DIFFERENT DAYS</p>
 <div style={{display:"flex",gap:5,justifyContent:"center",flexWrap:"wrap",maxWidth:520,margin:"0 auto"}}>
-{C.map((x,i)=>(
-<button key={i} onClick={()=>{setCi(i);reset();}} style={{fontFamily:"'DM Sans'",fontSize:10,fontWeight:ci===i?700:500,padding:"5px 10px",borderRadius:7,background:ci===i?x.h:"transparent",color:ci===i?"#fff":"#8A7A68",border:ci===i?"none":"1.5px solid #E8D5C0"}}>{x.i} {x.n.split("&")[0].split(" ")[0]}</button>
-))}
+{C.map((x,i)=><button key={i} onClick={()=>{setCi(i);reset();}} style={{fontFamily:"'DM Sans'",fontSize:10,fontWeight:ci===i?700:500,padding:"5px 10px",borderRadius:7,background:ci===i?x.h:"transparent",color:ci===i?"#fff":"#8A7A68",border:ci===i?"none":"1.5px solid #E8D5C0"}}>{x.i} {x.n.split("&")[0].split(" ")[0]}</button>)}
 </div>
 </div>
 
-{/* Hero */}
 <div style={{background:c.h,position:"relative",overflow:"hidden"}}>
 <div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 75% 25%,rgba(255,255,255,0.18),transparent 55%)"}}/>
-<div style={{display:"flex",justifyContent:"space-between",padding:"18px 24px",position:"relative"}}>
-<span style={{fontSize:13,letterSpacing:4,fontWeight:700,color:"rgba(255,255,255,0.9)"}}>WORTHYEST</span>
-<span style={{fontSize:13,fontWeight:600,color:"rgba(255,255,255,0.7)"}}>4/30</span>
-</div>
-<div style={{padding:"20px 28px 8px",position:"relative",animation:"fadeUp 0.8s ease both"}}>
-<p style={{fontSize:14,letterSpacing:6,color:"rgba(255,255,255,0.7)",fontWeight:700,marginBottom:8}}>{"DAY "+c.d}</p>
-<p style={{fontFamily:"'Merriweather',serif",fontSize:28,fontWeight:700,color:"#fff",marginBottom:12}}>{c.n+" "+c.i}</p>
-<p style={{fontSize:16,color:"rgba(255,255,255,0.85)",lineHeight:1.6,marginBottom:6}}>{c.gr}</p>
-</div>
-<div style={{padding:"24px 28px 32px",position:"relative",animation:"fadeUp 0.8s ease 0.3s both"}}>
-<div style={{width:30,height:1,background:"rgba(255,255,255,0.3)",marginBottom:16}}/>
-<p style={{fontFamily:"'Merriweather',serif",fontSize:22,fontWeight:400,fontStyle:"italic",color:"#fff",lineHeight:1.5,marginBottom:12}}>{'"'+c.q+'"'}</p>
-<p style={{fontSize:13,color:"rgba(255,255,255,0.8)",fontWeight:600}}>{"— "+c.au}</p>
-</div>
+<div style={{display:"flex",justifyContent:"space-between",padding:"18px 24px",position:"relative"}}><span style={{fontSize:13,letterSpacing:4,fontWeight:700,color:"rgba(255,255,255,0.9)"}}>WORTHYEST</span><span style={{fontSize:13,fontWeight:600,color:"rgba(255,255,255,0.7)"}}>4/30</span></div>
+<div style={{padding:"20px 28px 8px",position:"relative",animation:"fadeUp 0.8s ease both"}}><p style={{fontSize:14,letterSpacing:6,color:"rgba(255,255,255,0.7)",fontWeight:700,marginBottom:8}}>{"DAY "+c.d}</p><p style={{fontFamily:"'Merriweather',serif",fontSize:28,fontWeight:700,color:"#fff",marginBottom:12}}>{c.n+" "+c.i}</p><p style={{fontSize:16,color:"rgba(255,255,255,0.85)",lineHeight:1.6,marginBottom:6}}>{c.gr}</p></div>
+<div style={{padding:"24px 28px 32px",position:"relative",animation:"fadeUp 0.8s ease 0.3s both"}}><div style={{width:30,height:1,background:"rgba(255,255,255,0.3)",marginBottom:16}}/><p style={{fontFamily:"'Merriweather',serif",fontSize:22,fontWeight:400,fontStyle:"italic",color:"#fff",lineHeight:1.5,marginBottom:12}}>{'"'+c.q+'"'}</p><p style={{fontSize:13,color:"rgba(255,255,255,0.8)",fontWeight:600}}>{"— "+c.au}</p></div>
 </div>
 <div style={{height:28,background:"linear-gradient(180deg,"+c.a+",#FFFCF8)",borderRadius:"0 0 28px 28px",marginBottom:8}}/>
 
 <div style={{padding:"0 22px",maxWidth:520,margin:"0 auto"}}>
 
-{/* Explainer */}
-<div style={{textAlign:"justify",padding:"20px 4px 8px"}}>
-<p style={{fontSize:15,color:c.t,lineHeight:1.6,opacity:0.7}}>Capture your day in just a few minutes. Three simple touchpoints — <strong>Morning</strong>, <strong>Midday</strong>, and <strong>Evening</strong>. A few words at each is enough. This isn't another task on your list — it's a quiet check-in with yourself that reveals patterns you'd otherwise miss.</p>
-</div>
+<div style={{textAlign:"justify",padding:"20px 4px 8px"}}><p style={{fontSize:15,color:c.t,lineHeight:1.6,opacity:0.7}}>Capture your day in just a few minutes. Three simple touchpoints — <strong>Morning</strong>, <strong>Midday</strong>, and <strong>Evening</strong>. A few words at each is enough. This isn't another task on your list — it's a quiet check-in with yourself that reveals patterns you'd otherwise miss.</p></div>
 
-{/* MORNING */}
-<div style={{padding:"20px 20px 16px",margin:"28px 0 16px",background:c.h,borderRadius:16,position:"relative",overflow:"hidden"}}>
-<div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 90% 50%,rgba(255,255,255,0.1),transparent 50%)"}}/>
-<div style={{display:"flex",justifyContent:"space-between",alignItems:"center",position:"relative"}}>
-<div style={{display:"flex",alignItems:"center",gap:12}}>
-<span style={{fontSize:28}}>☀️</span>
-<div><p style={{fontSize:17,letterSpacing:4,fontWeight:700,color:"#fff"}}>MORNING</p><p style={{fontSize:14,color:"rgba(255,255,255,0.9)",fontWeight:600,marginTop:2}}>Step 1 of 3 · Set your intentions</p></div>
-</div>
-<div style={{display:"flex",gap:5}}>{[1,2,3].map(x=><div key={x} style={{width:32,height:6,borderRadius:3,background:x<=1?"#fff":"rgba(255,255,255,0.3)"}}/>)}</div>
-</div>
-</div>
+<Sec s={1} e="☀️" l="MORNING" sub="Step 1 of 3 · Check in & set your intentions"/>
 
-{/* Intention */}
-<div style={{background:"#fff",borderRadius:18,padding:"22px 20px 18px",marginBottom:12,boxShadow:"0 4px 20px "+c.b+"60"}}>
-<p style={{fontSize:13,letterSpacing:3,fontWeight:700,color:c.a,textTransform:"uppercase",marginBottom:8}}>Today's Intention</p>
-<p style={{fontSize:17,color:c.t,lineHeight:1.5,fontWeight:500,marginBottom:16}}>If one thing could make today feel meaningful, what would it be?</p>
-<textarea style={{width:"100%",fontFamily:"'DM Sans'",fontSize:16,color:c.t,background:"transparent",border:"none",borderBottom:"2px solid "+c.b,padding:"8px 0 10px",resize:"none",lineHeight:1.6}} placeholder="Just a sentence is enough..." rows="2"></textarea>
-</div>
+<div style={{background:c.g,borderRadius:18,padding:"22px 16px",marginBottom:12,textAlign:"center"}}><p style={{fontFamily:"'Merriweather',serif",fontSize:22,fontWeight:700,color:c.t,marginBottom:2}}>Last Night's Sleep</p><p style={{fontSize:14,color:c.a,fontWeight:600,marginBottom:12}}>How many hours of sleep did you get last night?</p><span style={{fontSize:28}}>😴</span><p style={{fontFamily:"'Merriweather',serif",fontSize:36,fontWeight:400,color:c.t,marginTop:4}}>0</p><p style={{fontSize:12,color:c.t,opacity:0.5}}>hours</p><p style={{fontSize:13,color:c.a,fontWeight:600,marginTop:8}}>avg: 6.8</p><div style={{marginTop:14,paddingTop:14,borderTop:"1.5px solid "+c.b}}><p style={{fontSize:15,color:c.t,fontWeight:600,lineHeight:1.5}}>Your sleep sets the tone for everything today — your energy, your mood, your clarity.</p></div></div>
 
-{/* Ritual */}
-<div style={{background:c.g,borderRadius:18,padding:"20px 18px",marginBottom:12,border:"1.5px solid "+c.b}}>
-<p style={{fontSize:13,letterSpacing:3,fontWeight:700,color:c.a,textTransform:"uppercase",marginBottom:4}}>Morning Ritual</p>
-<p style={{fontSize:15,color:c.t,fontWeight:500,marginBottom:14,opacity:0.7}}>What did you do for yourself this morning?</p>
-<div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
-{Ri.map(([em,la],i)=>(
-<div key={i} onClick={()=>setRit(p=>p.includes(i)?p.filter(x=>x!==i):[...p,i])} style={{display:"flex",alignItems:"center",gap:10,padding:"11px 12px",borderRadius:12,cursor:"pointer",background:rit.includes(i)?c.a+"12":"#fff",border:rit.includes(i)?"2px solid "+c.a:"1.5px solid "+c.b}}>
-<span style={{fontSize:18}}>{em}</span>
-<span style={{fontSize:13,fontWeight:rit.includes(i)?600:500,color:rit.includes(i)?c.a:c.t}}>{la}</span>
-</div>
-))}
-</div>
-<div onClick={()=>setSo(true)} style={{display:"flex",alignItems:"center",gap:10,padding:"11px 12px",background:so?c.a+"08":"#fff",borderRadius:12,border:so?"2px solid "+c.a:"1.5px solid "+c.b,marginTop:8,cursor:"pointer"}}>
-<span style={{fontSize:18}}>✏️</span>
-{so?<input autoFocus value={ot} onChange={e=>setOt(e.target.value)} placeholder="What else did you do?" style={{flex:1,fontFamily:"'DM Sans'",fontSize:14,fontWeight:500,color:c.t,background:"transparent",border:"none",outline:"none"}}/>:<span style={{fontSize:13,fontWeight:500,color:c.a+"80"}}>Something else...</span>}
-</div>
-</div>
+<div style={{background:"#fff",borderRadius:18,padding:"22px 20px 18px",marginBottom:12,boxShadow:"0 4px 20px "+c.b+"60"}}><p style={{fontSize:15,letterSpacing:3,fontWeight:700,color:c.a,textTransform:"uppercase",marginBottom:8}}>Today's Intention</p><p style={{fontSize:17,color:c.t,lineHeight:1.5,fontWeight:500,marginBottom:16}}>If one thing could make today feel meaningful, what would it be?</p><textarea style={{width:"100%",fontFamily:"'DM Sans'",fontSize:16,color:c.t,background:"transparent",border:"none",borderBottom:"2px solid "+c.b,padding:"8px 0 10px",resize:"none",lineHeight:1.6}} placeholder="Just a sentence is enough..." rows="2"></textarea></div>
 
-{/* Plate */}
-<div style={{background:"#fff",borderRadius:18,padding:"22px 20px 18px",marginBottom:12,border:"1.5px solid "+c.b}}>
-<div style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}>
-<div style={{width:4,height:16,borderRadius:2,background:c.a}}/>
-<p style={{fontSize:13,letterSpacing:3,fontWeight:700,color:c.a,textTransform:"uppercase"}}>The Conscious Plate</p>
-</div>
-<p style={{fontSize:17,color:c.t,lineHeight:1.5,fontWeight:500,marginBottom:16}}>{c.pl}</p>
-<textarea style={{width:"100%",fontFamily:"'DM Sans'",fontSize:16,color:c.t,background:"transparent",border:"none",borderBottom:"2px solid "+c.b,padding:"8px 0 10px",resize:"none",lineHeight:1.6}} placeholder="Whatever comes to mind..." rows="2"></textarea>
-</div>
+<div style={{background:c.g,borderRadius:18,padding:"20px 18px",marginBottom:12,border:"1.5px solid "+c.b}}><p style={{fontSize:15,letterSpacing:3,fontWeight:700,color:c.a,textTransform:"uppercase",marginBottom:4}}>Morning Ritual</p><p style={{fontSize:15,color:c.t,fontWeight:500,marginBottom:14,opacity:0.7}}>What did you do for yourself this morning?</p><div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>{Ri.map(([em,la],i)=><div key={i} onClick={()=>setRit(p=>p.includes(i)?p.filter(x=>x!==i):[...p,i])} style={{display:"flex",alignItems:"center",gap:10,padding:"11px 12px",borderRadius:12,cursor:"pointer",background:rit.includes(i)?c.a+"12":"#fff",border:rit.includes(i)?"2px solid "+c.a:"1.5px solid "+c.b}}><span style={{fontSize:18}}>{em}</span><span style={{fontSize:13,fontWeight:rit.includes(i)?600:500,color:rit.includes(i)?c.a:c.t}}>{la}</span></div>)}</div><div onClick={()=>setSo(true)} style={{display:"flex",alignItems:"center",gap:10,padding:"11px 12px",background:so?c.a+"08":"#fff",borderRadius:12,border:so?"2px solid "+c.a:"1.5px solid "+c.b,marginTop:8,cursor:"pointer"}}><span style={{fontSize:18}}>✏️</span>{so?<input autoFocus value={ot} onChange={e=>setOt(e.target.value)} placeholder="What else did you do?" style={{flex:1,fontFamily:"'DM Sans'",fontSize:14,fontWeight:500,color:c.t,background:"transparent",border:"none",outline:"none"}}/>:<span style={{fontSize:13,fontWeight:500,color:c.a+"80"}}>Something else...</span>}</div></div>
 
-{/* MIDDAY */}
-<div style={{padding:"20px 20px 16px",margin:"28px 0 16px",background:c.h,borderRadius:16,position:"relative",overflow:"hidden"}}>
-<div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 90% 50%,rgba(255,255,255,0.1),transparent 50%)"}}/>
-<div style={{display:"flex",justifyContent:"space-between",alignItems:"center",position:"relative"}}>
-<div style={{display:"flex",alignItems:"center",gap:12}}>
-<span style={{fontSize:28}}>🌤️</span>
-<div><p style={{fontSize:17,letterSpacing:4,fontWeight:700,color:"#fff"}}>MIDDAY</p><p style={{fontSize:14,color:"rgba(255,255,255,0.9)",fontWeight:600,marginTop:2}}>Step 2 of 3 · Quick check-in</p></div>
-</div>
-<div style={{display:"flex",gap:5}}>{[1,2,3].map(x=><div key={x} style={{width:32,height:6,borderRadius:3,background:x<=2?"#fff":"rgba(255,255,255,0.3)"}}/>)}</div>
-</div>
-</div>
+<div style={{background:"#fff",borderRadius:18,padding:"22px 20px 18px",marginBottom:12,border:"1.5px solid "+c.b}}><div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}><div style={{width:4,height:16,borderRadius:2,background:c.a}}/><p style={{fontSize:15,letterSpacing:3,fontWeight:700,color:c.a,textTransform:"uppercase"}}>The Conscious Plate</p></div><p style={{fontSize:14,color:c.t,lineHeight:1.5,opacity:0.6,marginBottom:12}}>A daily moment to notice how food shows up in your life — what you eat, how you eat, why you eat, and what it tells you about yourself.</p><p style={{fontSize:17,color:c.t,lineHeight:1.5,fontWeight:500,marginBottom:16}}>{c.pl}</p><textarea style={{width:"100%",fontFamily:"'DM Sans'",fontSize:16,color:c.t,background:"transparent",border:"none",borderBottom:"2px solid "+c.b,padding:"8px 0 10px",resize:"none",lineHeight:1.6}} placeholder="Whatever comes to mind..." rows="2"></textarea></div>
 
-{/* Midday check */}
-<div style={{background:c.g,borderRadius:18,padding:"20px 20px",marginBottom:12,border:"1.5px solid "+c.b}}>
-<p style={{fontFamily:"'Merriweather',serif",fontSize:18,fontWeight:400,fontStyle:"italic",color:c.t,lineHeight:1.5,marginBottom:16}}>Hey — halfway through. Take a breath. You're doing better than you think.</p>
-<div style={{borderTop:"1.5px solid "+c.b,paddingTop:14}}>
-<p style={{fontSize:15,color:c.t,fontWeight:500,marginBottom:12}}>How's your energy right now?</p>
-<div style={{display:"flex",gap:6}}>
-{Mo.map((m,i)=>(
-<div key={i} onClick={()=>setMm(i)} style={{flex:1,textAlign:"center",padding:"10px 4px 8px",borderRadius:12,cursor:"pointer",background:mm===i?m.color+"15":"#FAFAFA",border:mm===i?"2px solid "+m.color:"1.5px solid "+c.b,transition:"all 0.2s"}}>
-<span style={{fontSize:22,color:mm===i?m.color:m.color+"70"}}>{m.icon}</span>
-<p style={{fontSize:11,fontWeight:mm===i?700:500,color:mm===i?m.color:"#6B6660",marginTop:3}}>{m.label}</p>
-</div>
-))}
-</div>
-</div>
-</div>
-
+<Sec s={2} e="🌤️" l="MIDDAY" sub="Step 2 of 3 · Quick check-in"/>
+<div style={{background:c.g,borderRadius:18,padding:"20px 20px",marginBottom:12,border:"1.5px solid "+c.b}}><p style={{fontFamily:"'Merriweather',serif",fontSize:18,fontWeight:400,fontStyle:"italic",color:c.t,lineHeight:1.5,marginBottom:16}}>Hey — halfway through. Take a breath. You're doing better than you think.</p><div style={{borderTop:"1.5px solid "+c.b,paddingTop:14}}><p style={{fontSize:15,color:c.t,fontWeight:500,marginBottom:12}}>How's your energy right now?</p><MR v={mm} set={setMm}/></div></div>
 <p style={{fontSize:14,color:c.t,fontWeight:500,marginBottom:10,opacity:0.6}}>Update as you go — tap to add</p>
-<div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:12}}>
-{[["💧","Water","glasses","avg: 5.2"],["🏃‍♀️","Movement","minutes","avg: 22"]].map(([em,la,un,av])=>(
-<div key={la} style={{background:"#fff",borderRadius:18,padding:"18px 12px",textAlign:"center",border:"1.5px solid "+c.b}}>
-<span style={{fontSize:26}}>{em}</span>
-<p style={{fontSize:10,letterSpacing:2,fontWeight:700,color:c.a,marginTop:6,textTransform:"uppercase"}}>{la}</p>
-<p style={{fontFamily:"'Merriweather',serif",fontSize:32,fontWeight:400,color:c.t,marginTop:2}}>0</p>
-<p style={{fontSize:12,color:c.t,opacity:0.5}}>{un}</p>
-<p style={{fontSize:13,color:c.a,fontWeight:600,marginTop:8}}>{av}</p>
-</div>
-))}
-</div>
+<div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:12}}>{[["💧","Water","glasses","avg: 5.2"],["🏃‍♀️","Movement","minutes","avg: 22"]].map(([em,la,un,av])=><div key={la} style={{background:"#fff",borderRadius:18,padding:"18px 12px",textAlign:"center",border:"1.5px solid "+c.b}}><span style={{fontSize:26}}>{em}</span><p style={{fontSize:10,letterSpacing:2,fontWeight:700,color:c.a,marginTop:6,textTransform:"uppercase"}}>{la}</p><p style={{fontFamily:"'Merriweather',serif",fontSize:32,fontWeight:400,color:c.t,marginTop:2}}>0</p><p style={{fontSize:12,color:c.t,opacity:0.5}}>{un}</p><p style={{fontSize:13,color:c.a,fontWeight:600,marginTop:8}}>{av}</p></div>)}</div>
 
-{/* EVENING */}
-<div style={{padding:"20px 20px 16px",margin:"28px 0 16px",background:c.h,borderRadius:16,position:"relative",overflow:"hidden"}}>
-<div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 90% 50%,rgba(255,255,255,0.1),transparent 50%)"}}/>
-<div style={{display:"flex",justifyContent:"space-between",alignItems:"center",position:"relative"}}>
-<div style={{display:"flex",alignItems:"center",gap:12}}>
-<span style={{fontSize:28}}>🌙</span>
-<div><p style={{fontSize:17,letterSpacing:4,fontWeight:700,color:"#fff"}}>EVENING</p><p style={{fontSize:14,color:"rgba(255,255,255,0.9)",fontWeight:600,marginTop:2}}>Step 3 of 3 · Reflect & close your day</p></div>
-</div>
-<div style={{display:"flex",gap:5}}>{[1,2,3].map(x=><div key={x} style={{width:32,height:6,borderRadius:3,background:"#fff"}}/>)}</div>
-</div>
-</div>
-
+<Sec s={3} e="🌙" l="EVENING" sub="Step 3 of 3 · Reflect & close your day"/>
 <div style={{textAlign:"center",padding:"8px 16px 16px"}}><p style={{fontSize:15,color:c.t,lineHeight:1.6,opacity:0.7}}>Another day in the books. Let's take a quiet look back.</p></div>
 
-{/* Sleep */}
-<div style={{background:c.g,borderRadius:18,padding:"22px 16px",marginBottom:12,textAlign:"center"}}>
-<p style={{fontFamily:"'Merriweather',serif",fontSize:22,fontWeight:700,color:c.t,marginBottom:2}}>Last Night's Sleep</p>
-<p style={{fontSize:14,color:c.a,fontWeight:600,marginBottom:12}}>How many hours did you sleep before today?</p>
-<span style={{fontSize:28}}>😴</span>
-<p style={{fontFamily:"'Merriweather',serif",fontSize:36,fontWeight:400,color:c.t,marginTop:4}}>0</p>
-<p style={{fontSize:12,color:c.t,opacity:0.5}}>hours</p>
-<p style={{fontSize:13,color:c.a,fontWeight:600,marginTop:8}}>avg: 6.8</p>
-<div style={{marginTop:14,paddingTop:14,borderTop:"1.5px solid "+c.b}}>
-<p style={{fontSize:15,color:c.t,fontWeight:600,lineHeight:1.5}}>Your sleep sets the tone for everything — your energy, your mood, your clarity.</p>
-</div>
-</div>
+<div style={{background:"#fff",borderRadius:18,padding:"20px 16px",marginBottom:12,border:"1.5px solid "+c.b}}><p style={{fontSize:15,letterSpacing:3,fontWeight:700,color:c.t,textTransform:"uppercase",marginBottom:4}}>Energy & Mood</p>{mm!==null&&<p style={{fontSize:14,color:c.a,fontWeight:500,marginBottom:8,fontStyle:"italic"}}>{"At midday you felt "+Mo[mm].label.toLowerCase()+". Has that shifted?"}</p>}<p style={{fontSize:17,color:c.t,fontWeight:500,marginBottom:14}}>How did you feel today, overall?</p><MR v={mood} set={setMood}/></div>
 
-{/* Mood */}
-<div style={{background:"#fff",borderRadius:18,padding:"20px 16px",marginBottom:12,border:"1.5px solid "+c.b}}>
-<p style={{fontSize:13,letterSpacing:3,fontWeight:700,color:c.t,textTransform:"uppercase",marginBottom:4}}>Energy & Mood</p>
-{mm!==null&&<p style={{fontSize:14,color:c.a,fontWeight:500,marginBottom:8,fontStyle:"italic"}}>{"At midday you felt "+Mo[mm].label.toLowerCase()+". Has that shifted?"}</p>}
-<p style={{fontSize:17,color:c.t,fontWeight:500,marginBottom:14}}>How did you feel today, overall?</p>
-<div style={{display:"flex",gap:6}}>
-{Mo.map((m,i)=>(
-<div key={i} onClick={()=>setMood(i)} style={{flex:1,textAlign:"center",padding:"10px 4px 8px",borderRadius:12,cursor:"pointer",background:mood===i?m.color+"15":"#FAFAFA",border:mood===i?"2px solid "+m.color:"1.5px solid "+c.b,transition:"all 0.2s"}}>
-<span style={{fontSize:22,color:mood===i?m.color:m.color+"70"}}>{m.icon}</span>
-<p style={{fontSize:11,fontWeight:mood===i?700:500,color:mood===i?m.color:"#6B6660",marginTop:3}}>{m.label}</p>
-</div>
-))}
-</div>
-</div>
+<div style={{background:c.g,borderRadius:18,padding:"20px 20px 16px",marginBottom:12}}><p style={{fontSize:15,letterSpacing:3,fontWeight:700,color:c.a,textTransform:"uppercase",marginBottom:12}}>Grateful For</p>{[1,2].map(n=><div key={n} style={{display:"flex",gap:10,marginBottom:10}}><span style={{fontFamily:"'Merriweather',serif",fontSize:22,fontWeight:400,color:c.a}}>{n+"."}</span><input style={{flex:1,fontFamily:"'DM Sans'",fontSize:15,color:c.t,background:"transparent",border:"none",borderBottom:"2px solid "+c.b,padding:"4px 0 6px"}} placeholder={n===1?"Something that brought light today...":"Something quiet you're thankful for..."}/></div>)}</div>
 
-{/* Gratitude */}
-<div style={{background:c.g,borderRadius:18,padding:"20px 20px 16px",marginBottom:12}}>
-<p style={{fontSize:13,letterSpacing:3,fontWeight:700,color:c.a,textTransform:"uppercase",marginBottom:12}}>Grateful For</p>
-{[1,2].map(n=>(
-<div key={n} style={{display:"flex",gap:10,marginBottom:10}}>
-<span style={{fontFamily:"'Merriweather',serif",fontSize:22,fontWeight:400,color:c.a}}>{n+"."}</span>
-<input style={{flex:1,fontFamily:"'DM Sans'",fontSize:15,color:c.t,background:"transparent",border:"none",borderBottom:"2px solid "+c.b,padding:"4px 0 6px"}} placeholder={n===1?"Something that brought light today...":"Something quiet you're thankful for..."}/>
-</div>
-))}
-</div>
+<div style={{background:"#fff",borderRadius:18,padding:"22px 20px 18px",marginBottom:12,boxShadow:"0 4px 16px "+c.b+"40"}}><p style={{fontSize:15,letterSpacing:3,fontWeight:700,color:c.a,textTransform:"uppercase",marginBottom:8}}>Evening Reflection</p><p style={{fontSize:17,color:c.t,lineHeight:1.5,fontWeight:500,marginBottom:16}}>What was the best part of your day, and why?</p><textarea style={{width:"100%",fontFamily:"'DM Sans'",fontSize:16,color:c.t,background:"transparent",border:"none",borderBottom:"2px solid "+c.b,padding:"8px 0 10px",resize:"none",lineHeight:1.6}} placeholder="Even small moments count..." rows="3"></textarea><div style={{background:c.g,borderRadius:12,padding:"14px 16px",border:"1.5px solid "+c.b,marginTop:16}}><p style={{fontSize:12,fontWeight:600,color:c.a,marginBottom:4}}>↩ Back to this morning</p><p style={{fontSize:15,color:c.t,lineHeight:1.5}}>You set an intention earlier. Did it play out? What shifted?</p></div></div>
 
-{/* Reflection */}
-<div style={{background:"#fff",borderRadius:18,padding:"22px 20px 18px",marginBottom:12,boxShadow:"0 4px 16px "+c.b+"40"}}>
-<p style={{fontSize:13,letterSpacing:3,fontWeight:700,color:c.a,textTransform:"uppercase",marginBottom:8}}>Evening Reflection</p>
-<p style={{fontSize:17,color:c.t,lineHeight:1.5,fontWeight:500,marginBottom:16}}>What was the best part of your day, and why?</p>
-<textarea style={{width:"100%",fontFamily:"'DM Sans'",fontSize:16,color:c.t,background:"transparent",border:"none",borderBottom:"2px solid "+c.b,padding:"8px 0 10px",resize:"none",lineHeight:1.6}} placeholder="Even small moments count..." rows="3"></textarea>
-<div style={{background:c.g,borderRadius:12,padding:"14px 16px",border:"1.5px solid "+c.b,marginTop:16}}>
-<p style={{fontSize:12,fontWeight:600,color:c.a,marginBottom:4}}>↩ Back to this morning</p>
-<p style={{fontSize:15,color:c.t,lineHeight:1.5}}>You set an intention earlier. Did it play out? What shifted?</p>
-</div>
-</div>
+<div style={{background:c.g,borderRadius:18,padding:"20px 18px",marginBottom:12}}><p style={{fontSize:15,letterSpacing:3,fontWeight:700,color:c.a,textTransform:"uppercase",marginBottom:12}}>Daily Habits</p>{HL.map((h,i)=><div key={i} onClick={()=>{const n=[...hab];n[i]=!n[i];setHab(n);}} style={{display:"flex",alignItems:"center",gap:12,padding:"12px 14px",background:"#fff",borderRadius:12,marginBottom:8,cursor:"pointer",border:hab[i]?"2px solid "+c.a:"1.5px solid "+c.b}}><div style={{width:22,height:22,borderRadius:7,border:"2px solid "+(hab[i]?c.a:c.b),background:hab[i]?c.a:"transparent",display:"flex",alignItems:"center",justifyContent:"center"}}>{hab[i]&&<span style={{color:"#fff",fontSize:12}}>✓</span>}</div><span style={{fontSize:14,fontWeight:hab[i]?600:500,color:hab[i]?c.t:c.t+"AA"}}>{h}</span></div>)}</div>
 
-{/* Habits */}
-<div style={{background:c.g,borderRadius:18,padding:"20px 18px",marginBottom:12}}>
-<p style={{fontSize:13,letterSpacing:3,fontWeight:700,color:c.a,textTransform:"uppercase",marginBottom:12}}>Daily Habits</p>
-{HL.map((h,i)=>(
-<div key={i} onClick={()=>{const n=[...hab];n[i]=!n[i];setHab(n);}} style={{display:"flex",alignItems:"center",gap:12,padding:"12px 14px",background:"#fff",borderRadius:12,marginBottom:8,cursor:"pointer",border:hab[i]?"2px solid "+c.a:"1.5px solid "+c.b}}>
-<div style={{width:22,height:22,borderRadius:7,border:"2px solid "+(hab[i]?c.a:c.b),background:hab[i]?c.a:"transparent",display:"flex",alignItems:"center",justifyContent:"center"}}>{hab[i]&&<span style={{color:"#fff",fontSize:12}}>✓</span>}</div>
-<span style={{fontSize:14,fontWeight:hab[i]?600:500,color:hab[i]?c.t:c.t+"AA"}}>{h}</span>
-</div>
-))}
-</div>
+<div style={{background:c.h,borderRadius:20,padding:"30px 24px",textAlign:"center",marginBottom:12,position:"relative",overflow:"hidden"}}><div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 70% 30%,rgba(255,255,255,0.12),transparent 50%)"}}/><p style={{fontSize:9,letterSpacing:4,color:"#fff",fontWeight:700,marginBottom:14,opacity:0.85,position:"relative"}}>CARRY THIS WITH YOU</p><p style={{fontFamily:"'Merriweather',serif",fontSize:20,fontWeight:400,fontStyle:"italic",color:"#fff",lineHeight:1.55,position:"relative"}}>{c.tk}</p></div>
 
-{/* Takeaway */}
-<div style={{background:c.h,borderRadius:20,padding:"30px 24px",textAlign:"center",marginBottom:12,position:"relative",overflow:"hidden"}}>
-<div style={{position:"absolute",inset:0,background:"radial-gradient(circle at 70% 30%,rgba(255,255,255,0.12),transparent 50%)"}}/>
-<p style={{fontSize:9,letterSpacing:4,color:"#fff",fontWeight:700,marginBottom:14,opacity:0.85,position:"relative"}}>CARRY THIS WITH YOU</p>
-<p style={{fontFamily:"'Merriweather',serif",fontSize:20,fontWeight:400,fontStyle:"italic",color:"#fff",lineHeight:1.55,position:"relative"}}>{c.tk}</p>
-</div>
-
-{/* Complete */}
-<div style={{background:"#fff",borderRadius:18,padding:"24px 20px",marginBottom:16,border:"1.5px solid "+c.b,textAlign:"center"}}>
-<p style={{fontSize:28,marginBottom:8}}>✓</p>
-<p style={{fontFamily:"'Merriweather',serif",fontSize:18,fontWeight:700,color:c.t,marginBottom:4}}>{"Day "+c.d+" — done."}</p>
-<p style={{fontSize:14,color:c.t,opacity:0.6,marginBottom:16}}>Every entry adds to your story.</p>
-<div style={{borderTop:"1.5px solid "+c.b,paddingTop:16}}>
-<p style={{fontSize:11,letterSpacing:2,fontWeight:600,color:c.a,textTransform:"uppercase",marginBottom:6}}>Tomorrow</p>
-<p style={{fontFamily:"'Merriweather',serif",fontSize:20,fontWeight:400,fontStyle:"italic",color:c.t}}>{C[(ci+1)%6].n+" "+C[(ci+1)%6].i}</p>
-</div>
-</div>
+<div style={{background:"#fff",borderRadius:18,padding:"24px 20px",marginBottom:16,border:"1.5px solid "+c.b,textAlign:"center"}}><p style={{fontSize:28,marginBottom:8}}>✓</p><p style={{fontFamily:"'Merriweather',serif",fontSize:18,fontWeight:700,color:c.t,marginBottom:4}}>{"Day "+c.d+" — done."}</p><p style={{fontSize:14,color:c.t,opacity:0.6,marginBottom:16}}>Every entry adds to your story.</p><div style={{borderTop:"1.5px solid "+c.b,paddingTop:16}}><p style={{fontSize:11,letterSpacing:2,fontWeight:600,color:c.a,textTransform:"uppercase",marginBottom:6}}>Tomorrow</p><p style={{fontFamily:"'Merriweather',serif",fontSize:20,fontWeight:400,fontStyle:"italic",color:c.t}}>{C[(ci+1)%6].n+" "+C[(ci+1)%6].i}</p></div></div>
 
 <div style={{textAlign:"center"}}><button style={{fontFamily:"'DM Sans'",fontSize:12,letterSpacing:3,textTransform:"uppercase",padding:"14px 28px",background:c.a,color:"#fff",border:"none",borderRadius:10,fontWeight:700}}>Share Today's Quote</button></div>
 <div style={{textAlign:"center",marginTop:32}}><div style={{width:40,height:1,background:c.b,margin:"0 auto 10px"}}/><p style={{fontSize:11,letterSpacing:2,color:c.a+"80"}}>worthyest.com</p></div>
 
 </div>
 </div>
-);
-}
+);}
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
 </script>
